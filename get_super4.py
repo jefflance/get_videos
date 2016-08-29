@@ -40,7 +40,7 @@ logger = logging.getLogger('get_super4.py')
 
 # Environment variables
 # source_url = 'http://pluzz.francetv.fr/videos/super_4_france_4.html'
-source_url = 'http://pluzz.francetv.fr/videos/super_4_france_4_saison1_ep3_,145460211.html'
+source_url = 'http://pluzz.francetv.fr/videos/super_4_france_4_saison1_ep21_,145455579.html'
 save_path = '/home/jeff/Videos/sortie/super4/'
 
 
