@@ -3,7 +3,7 @@
 
 
 # Imports
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import subprocess
 import re
 import logging
@@ -11,7 +11,7 @@ import argparse
 import os
 from bs4 import BeautifulSoup
 from datetime import datetime
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 
 # Parsing arguments
@@ -50,8 +50,8 @@ download_url = "%s://%s" % (urlparse(source_url).scheme,
 
 
 # Request Peppa Pig page on FranceTV Pluzz, store content and parse it
-req = urllib2.Request(source_url)
-rep = urllib2.urlopen(req)
+req = urllib.request.Request(source_url)
+rep = urllib.request.urlopen(req)
 page = rep.read()
 soup = BeautifulSoup(page, "lxml")
 logger.info('Parse page')
@@ -66,7 +66,7 @@ try:
     urls = [download_url + link.get('href') for link in
             soup.find(id='player-memeProgramme').find_all('a')]
 except AttributeError as detail:
-    print 'No videos on Pluzz'
+    print('No videos on Pluzz')
     logger.error('Impossible to get data from Pluzz: %s' % detail)
 else:
     logger.debug('Generate URLs list: %s', urls)
@@ -91,7 +91,7 @@ else:
     logger.debug('Generate args list: %s', args)
 
     # Start download with youtube-dl
-    print 'Downloading: %s files' % (len(urls))
+    print('Downloading: %s files' % (len(urls)))
 
     logger.info('Start downloading')
 
